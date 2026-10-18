@@ -20,7 +20,7 @@ from pathlib import Path
 import pymupdf
 
 
-SOURCES_DIR = Path(__file__).resolve().parent.parent / "sources"
+SOURCES_DIR = Path(__file__).resolve().parent.parent / "PCG" / "sources"
 
 # PDF-internal font names → web-safe CSS font stacks.
 # PyMuPDF's get_text("html") emits font-family values like "SymbolMT" or

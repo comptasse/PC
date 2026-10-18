@@ -1,48 +1,29 @@
-# Plan Comptable Général
+# Plans Comptables
 
 ## Informations
-Le plan des comptes complet au format **JSON**.
+Des plans de comptes officiels au format **JSON**, organisés par plan comptable.
 
-Les données sont récupérées depuis le Plan Comptable Général (PCG) français émis chaque année par l'[Autorité des Normes Comptables](https://www.anc.gouv.fr) (ANC).
-
-
-## Liens
-| Version | Consolidée | Recueil  | Structure |
-| ------- | -------------- | ----------- | --------- |
-| 2026    | [.pdf](sources/2026/pcg_20260101.pdf) · [.html](sources/2026/pcg_20260101.html) · [.md](sources/2026/pcg_20260101.md) | [.pdf](sources/2026/recueil_20260101.pdf) · [.html](sources/2026/recueil_20260101.html) · [.md](sources/2026/recueil_20260101.html) | [README](versions/2026/README.md) |
-| 2025    | [.pdf](sources/2025/pcg_20250101.pdf) · [.html](sources/2025/pcg_20250101.html) · [.md](sources/2025/pcg_20250101.md) | [.pdf](sources/2025/recueil_20250101.pdf) · [.html](sources/2025/recueil_20250101.html) · [.md](sources/2025/recueil_20250101.html) | [README](versions/2025/README.md) |
-| 2024    | [.pdf](sources/2024/pcg_20240101.pdf) · [.html](sources/2024/pcg_20240101.html) · [.md](sources/2024/pcg_20240101.md) | [.pdf](sources/2024/recueil_20240101.pdf) · [.html](sources/2024/recueil_20240101.html) · [.md](sources/2024/recueil_20240101.html) | [README](versions/2024/README.md) |
-| 2023    | [.pdf](sources/2023/pcg_20230101.pdf) · [.html](sources/2023/pcg_20230101.html) · [.md](sources/2023/pcg_20230101.md) | [.pdf](sources/2023/recueil_20230101.pdf) · [.html](sources/2023/recueil_20230101.html) · [.md](sources/2023/recueil_20230101.html) | [README](versions/2023/README.md) |
-
-Les documents en format `.pdf` proviennent de cette [source](https://www.anc.gouv.fr/normes-comptables-francaises/recueils-des-normes-comptables). Certains liens ne fonctionnent cependant plus. 
-Nous avons contactés l'ANC à ce sujet, sans réponse pour le moment.
+| Plan | Pays | Autorité | Dossier |
+| ---- | ---- | -------- | ------- |
+| Plan Comptable Général (PCG) | 🇫🇷 France | [Autorité des Normes Comptables](https://www.anc.gouv.fr) (ANC) | [PCG](PCG/README.md) |
 
 
 ## Structure
-Les différentes versions sont à retrouver dans le dossier [*versions*](versions), organisées par année. Chaque dossier contient les fichiers suivants ainsi qu'un `README.md` décrivant la structure des données :
+Chaque plan comptable dispose de son propre dossier, contenant :
 
-- **`pcg_{année}.json`** — Fichier unique contenant le plan des comptes en formats hiérarchique et à plat, ainsi que les différences par rapport à la version précédente (absent pour la première version).
-- **`pcg_{année}.schema.json`** — Schéma JSON ([json-schema.org](https://json-schema.org/)) décrivant la structure du fichier.
+- **`README.md`** — Présentation du plan, liens vers les sources et les versions.
+- **`sources/`** — Les documents officiels d'origine, organisés par version.
+- **`versions/`** — Les fichiers JSON et leurs schémas ([json-schema.org](https://json-schema.org/)), organisés par version. Chaque version contient un `README.md` décrivant la structure des données.
 
 ```
-versions/
-├── 2023/
-│   ├── pcg_2023.json
-│   ├── pcg_2023.schema.json
-│   └── README.md
-├── 2024/
-│   ├── pcg_2024.json
-│   ├── pcg_2024.schema.json
-│   └── README.md
-├── 2025/
-│   ├── pcg_2025.json
-│   ├── pcg_2025.schema.json
-│   └── README.md
-└── 2026/
-    ├── pcg_2026.json
-    ├── pcg_2026.schema.json
-    └── README.md
+PCG/
+├── README.md
+├── sources/
+└── versions/
+scripts/
 ```
+
+Le dossier [*scripts*](scripts) contient les outils de conversion des sources.
 
 
 ## Projets similaires

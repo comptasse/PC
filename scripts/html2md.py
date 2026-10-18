@@ -22,7 +22,7 @@ import sys
 from html.parser import HTMLParser
 from pathlib import Path
 
-SOURCES_DIR = Path(__file__).resolve().parent.parent / "sources"
+SOURCES_DIR = Path(__file__).resolve().parent.parent / "PCG" / "sources"
 
 # ---------------------------------------------------------------------------
 # Font-size → heading level thresholds (same as pdf2html output)

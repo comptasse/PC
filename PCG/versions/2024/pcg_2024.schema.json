@@ -1,14 +1,14 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/arrhes/PCG/versions/2025/pcg_2025.schema.json",
-    "title": "Plan Comptable Général - Version 2025",
-    "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2025, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
+    "$id": "https://github.com/arrhes/PCG/PCG/versions/2024/pcg_2024.schema.json",
+    "title": "Plan Comptable Général - Version 2024",
+    "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2024, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
     "type": "object",
     "properties": {
         "version": {
             "type": "integer",
             "description": "L'année de la version du plan comptable.",
-            "const": 2025
+            "const": 2024
         },
         "flat": {
             "type": "array",
@@ -90,10 +90,11 @@
                 "system": {
                     "type": "string",
                     "enum": [
-                        "minimal",
-                        "facultatif"
+                        "condensed",
+                        "base",
+                        "developed"
                     ],
-                    "description": "Le système dans lequel s'inscrit le compte: minimal (plan de comptes minimal), facultatif (compte facultatif)."
+                    "description": "Le système minimal dans lequel s'inscrit le compte: condensed (système abrégé), base (système de base), developed (système développé)."
                 },
                 "parent": {
                     "type": [
@@ -125,10 +126,11 @@
                 "system": {
                     "type": "string",
                     "enum": [
-                        "minimal",
-                        "facultatif"
+                        "condensed",
+                        "base",
+                        "developed"
                     ],
-                    "description": "Le système dans lequel s'inscrit le compte: minimal (plan de comptes minimal), facultatif (compte facultatif)."
+                    "description": "Le système minimal dans lequel s'inscrit le compte: condensed (système abrégé), base (système de base), developed (système développé)."
                 },
                 "accounts": {
                     "type": "array",

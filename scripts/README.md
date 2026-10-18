@@ -1,6 +1,6 @@
 # Scripts
 
-Outils pour traiter les fichiers PDF sources du PCG.
+Outils pour traiter les fichiers sources des plans comptables. Les scripts `pdf2html.py` et `html2md.py` travaillent sur les sources du PCG (`PCG/sources`).
 
 ## Prérequis
 
