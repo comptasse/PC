@@ -1,7 +1,7 @@
 [project]
 name = "pcg-scripts"
 version = "0.1.0"
-description = "Scripts for processing PCG (Plan Comptable Général) PDF sources"
+description = "Scripts for processing accounting plan sources (PCG, PCMN)"
 requires-python = ">=3.11"
 dependencies = [
     "pymupdf>=1.25",
@@ -10,3 +10,9 @@ dependencies = [
 [project.scripts]
 html2md = "html2md:main"
 pdf2html = "pdf2html:main"
+pcmn_html2json = "pcmn_html2json:main"
+
+[dependency-groups]
+dev = [
+    "jsonschema>=4.26.0",
+]
