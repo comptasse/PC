@@ -1,14 +1,14 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/arrhes/PCG/versions/2024/pcg_2024.schema.json",
-    "title": "Plan Comptable Général - Version 2024",
-    "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2024, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
+    "$id": "https://github.com/arrhes/PCG/PCG/versions/2023/pcg_2023.schema.json",
+    "title": "Plan Comptable Général - Version 2023",
+    "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2023, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
     "type": "object",
     "properties": {
         "version": {
             "type": "integer",
             "description": "L'année de la version du plan comptable.",
-            "const": 2024
+            "const": 2023
         },
         "flat": {
             "type": "array",
@@ -23,56 +23,12 @@
             "items": {
                 "$ref": "#/$defs/nestedAccount"
             }
-        },
-        "diff": {
-            "type": "object",
-            "description": "Différences par rapport à la version précédente.",
-            "properties": {
-                "from": {
-                    "type": "integer",
-                    "description": "L'année de la version précédente."
-                },
-                "to": {
-                    "type": "integer",
-                    "description": "L'année de la version courante."
-                },
-                "added": {
-                    "type": "array",
-                    "description": "Les comptes ajoutés.",
-                    "items": {
-                        "$ref": "#/$defs/diffAccount"
-                    }
-                },
-                "removed": {
-                    "type": "array",
-                    "description": "Les comptes supprimés.",
-                    "items": {
-                        "$ref": "#/$defs/diffAccount"
-                    }
-                },
-                "modified": {
-                    "type": "array",
-                    "description": "Les comptes dont le libellé et/ou le système a changé.",
-                    "items": {
-                        "$ref": "#/$defs/diffModified"
-                    }
-                }
-            },
-            "required": [
-                "from",
-                "to",
-                "added",
-                "removed",
-                "modified"
-            ],
-            "additionalProperties": false
         }
     },
     "required": [
         "version",
         "flat",
-        "nested",
-        "diff"
+        "nested"
     ],
     "additionalProperties": false,
     "$defs": {
@@ -161,50 +117,6 @@
             "required": [
                 "from",
                 "to"
-            ],
-            "additionalProperties": false
-        },
-        "diffAccount": {
-            "type": "object",
-            "properties": {
-                "number": {
-                    "type": "integer",
-                    "description": "Le numéro du compte."
-                },
-                "label": {
-                    "type": "string",
-                    "description": "Le libellé du compte."
-                },
-                "system": {
-                    "type": "string",
-                    "description": "Le système du compte."
-                }
-            },
-            "required": [
-                "number",
-                "label",
-                "system"
-            ],
-            "additionalProperties": false
-        },
-        "diffModified": {
-            "type": "object",
-            "properties": {
-                "number": {
-                    "type": "integer",
-                    "description": "Le numéro du compte modifié."
-                },
-                "label": {
-                    "$ref": "#/$defs/changeValue",
-                    "description": "Changement du libellé (from/to)."
-                },
-                "system": {
-                    "$ref": "#/$defs/changeValue",
-                    "description": "Changement du système (from/to)."
-                }
-            },
-            "required": [
-                "number"
             ],
             "additionalProperties": false
         }

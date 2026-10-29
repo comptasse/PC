@@ -1,0 +1,292 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/arrhes/PCG/PCMN/versions/2019/pcmn_2019.schema.json",
+    "title": "Plan Comptable Minimum Normalisé (PCMN) - Version 2019",
+    "description": "Plan comptable minimum normalisé belge (texte coordonné au 7 mai 2019), pour les entreprises ou pour les associations et fondations, contenant les formats hiérarchique et à plat, les notes de bas de page et le contenu de certains comptes, en français, néerlandais, allemand et anglais.",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "integer",
+            "description": "L'année du texte coordonné.",
+            "const": 2019
+        },
+        "plan": {
+            "type": "string",
+            "description": "Le plan : entreprises (entreprises autres que les associations et fondations) ou asbl (associations et fondations).",
+            "enum": [
+                "entreprises",
+                "asbl"
+            ]
+        },
+        "coordinated": {
+            "type": "string",
+            "format": "date",
+            "description": "La date de coordination du texte publié par la CNC.",
+            "const": "2019-05-07"
+        },
+        "footnotes": {
+            "type": "object",
+            "description": "Les notes de bas de page, indexées par leur numéro officiel.",
+            "propertyNames": {
+                "pattern": "^[0-9]+(bis|ter)?$"
+            },
+            "additionalProperties": {
+                "$ref": "#/$defs/nullableTranslations"
+            }
+        },
+        "flat": {
+            "type": "array",
+            "description": "Version à plat avec référence au compte parent.",
+            "items": {
+                "$ref": "#/$defs/flatAccount"
+            }
+        },
+        "nested": {
+            "type": "array",
+            "description": "Version hiérarchique avec sous-comptes imbriqués.",
+            "items": {
+                "$ref": "#/$defs/nestedAccount"
+            }
+        }
+    },
+    "required": [
+        "version",
+        "plan",
+        "coordinated",
+        "footnotes",
+        "flat",
+        "nested"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+        "number": {
+            "type": "string",
+            "description": "Le numéro du compte, sous forme de texte pour conserver les zéros de tête (0, 00, 000). Une plage de comptes s'écrit \"164-165\".",
+            "pattern": "^[0-9]+(-[0-9]+)?$"
+        },
+        "nullableTranslations": {
+            "type": "object",
+            "description": "Un texte dans chaque langue, ou null lorsque la langue ne le contient pas.",
+            "properties": {
+                "fr": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "nl": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "de": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "en": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "fr",
+                "nl",
+                "de",
+                "en"
+            ],
+            "additionalProperties": false
+        },
+        "translations": {
+            "type": "object",
+            "description": "Un texte dans chaque langue.",
+            "properties": {
+                "fr": {
+                    "type": "string"
+                },
+                "nl": {
+                    "type": "string"
+                },
+                "de": {
+                    "type": "string"
+                },
+                "en": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "fr",
+                "nl",
+                "de",
+                "en"
+            ],
+            "additionalProperties": false
+        },
+        "notes": {
+            "type": "array",
+            "description": "Les numéros des notes de bas de page associées au compte.",
+            "items": {
+                "type": "string",
+                "pattern": "^[0-9]+(bis|ter)?$"
+            },
+            "minItems": 1
+        },
+        "rubric": {
+            "type": "object",
+            "description": "La rubrique correspondante du schéma complet des comptes annuels (associations et fondations uniquement). Deux rubriques possibles sont séparées par \"/\".",
+            "properties": {
+                "asset": {
+                    "type": "string",
+                    "description": "Rubrique à l'actif du bilan."
+                },
+                "liability": {
+                    "type": "string",
+                    "description": "Rubrique au passif du bilan."
+                },
+                "income_statement": {
+                    "type": "string",
+                    "description": "Rubrique du compte de résultats."
+                }
+            },
+            "minProperties": 1,
+            "additionalProperties": false
+        },
+        "subdivision": {
+            "type": "object",
+            "description": "Une subdivision générique d'une plage de comptes, par exemple \"...1 Chèques émis\" sous 550-559.",
+            "properties": {
+                "suffix": {
+                    "type": "string",
+                    "description": "Le dernier chiffre du numéro des sous-comptes.",
+                    "pattern": "^[0-9]+$"
+                },
+                "label": {
+                    "$ref": "#/$defs/nullableTranslations"
+                },
+                "notes": {
+                    "$ref": "#/$defs/notes"
+                }
+            },
+            "required": [
+                "suffix",
+                "label"
+            ],
+            "additionalProperties": false
+        },
+        "accountProperties": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "$ref": "#/$defs/number"
+                },
+                "label": {
+                    "$ref": "#/$defs/nullableTranslations",
+                    "description": "Le libellé du compte dans chaque langue. null lorsque le texte ne donne pas de libellé (numéro non utilisé par ce plan) ou que la langue omet le compte."
+                },
+                "range": {
+                    "type": "object",
+                    "description": "Les bornes d'une plage de comptes.",
+                    "properties": {
+                        "from": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "to": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        }
+                    },
+                    "required": [
+                        "from",
+                        "to"
+                    ],
+                    "additionalProperties": false
+                },
+                "rubric": {
+                    "$ref": "#/$defs/rubric"
+                },
+                "notes": {
+                    "$ref": "#/$defs/notes"
+                },
+                "subdivisions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/subdivision"
+                    }
+                },
+                "description": {
+                    "$ref": "#/$defs/translations",
+                    "description": "Le contenu du compte, tel que décrit dans la section « Détermination du contenu de certains comptes »."
+                }
+            }
+        },
+        "flatAccount": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/$defs/accountProperties"
+                }
+            ],
+            "properties": {
+                "number": true,
+                "label": true,
+                "range": true,
+                "rubric": true,
+                "notes": true,
+                "subdivisions": true,
+                "description": true,
+                "parent": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/$defs/number"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Le numéro du compte parent, ou null pour les comptes racines (classes)."
+                }
+            },
+            "required": [
+                "number",
+                "label",
+                "parent"
+            ],
+            "additionalProperties": false
+        },
+        "nestedAccount": {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "#/$defs/accountProperties"
+                }
+            ],
+            "properties": {
+                "number": true,
+                "label": true,
+                "range": true,
+                "rubric": true,
+                "notes": true,
+                "subdivisions": true,
+                "description": true,
+                "accounts": {
+                    "type": "array",
+                    "description": "La liste des sous-comptes (structure récursive).",
+                    "items": {
+                        "$ref": "#/$defs/nestedAccount"
+                    }
+                }
+            },
+            "required": [
+                "number",
+                "label",
+                "accounts"
+            ],
+            "additionalProperties": false
+        }
+    }
+}

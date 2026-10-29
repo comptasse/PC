@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/arrhes/PCG/versions/2026/pcg_2026.schema.json",
+    "$id": "https://github.com/arrhes/PCG/PCG/versions/2026/pcg_2026.schema.json",
     "title": "Plan Comptable Général - Version 2026",
     "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2026, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
     "type": "object",

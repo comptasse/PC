@@ -1,0 +1,210 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/arrhes/PCG/PCG/versions/2025/pcg_2025.schema.json",
+    "title": "Plan Comptable Général - Version 2025",
+    "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2025, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "integer",
+            "description": "L'année de la version du plan comptable.",
+            "const": 2025
+        },
+        "flat": {
+            "type": "array",
+            "description": "Version à plat avec référence au compte parent.",
+            "items": {
+                "$ref": "#/$defs/flatAccount"
+            }
+        },
+        "nested": {
+            "type": "array",
+            "description": "Version hiérarchique avec sous-comptes imbriqués.",
+            "items": {
+                "$ref": "#/$defs/nestedAccount"
+            }
+        },
+        "diff": {
+            "type": "object",
+            "description": "Différences par rapport à la version précédente.",
+            "properties": {
+                "from": {
+                    "type": "integer",
+                    "description": "L'année de la version précédente."
+                },
+                "to": {
+                    "type": "integer",
+                    "description": "L'année de la version courante."
+                },
+                "added": {
+                    "type": "array",
+                    "description": "Les comptes ajoutés.",
+                    "items": {
+                        "$ref": "#/$defs/diffAccount"
+                    }
+                },
+                "removed": {
+                    "type": "array",
+                    "description": "Les comptes supprimés.",
+                    "items": {
+                        "$ref": "#/$defs/diffAccount"
+                    }
+                },
+                "modified": {
+                    "type": "array",
+                    "description": "Les comptes dont le libellé et/ou le système a changé.",
+                    "items": {
+                        "$ref": "#/$defs/diffModified"
+                    }
+                }
+            },
+            "required": [
+                "from",
+                "to",
+                "added",
+                "removed",
+                "modified"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "version",
+        "flat",
+        "nested",
+        "diff"
+    ],
+    "additionalProperties": false,
+    "$defs": {
+        "flatAccount": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "integer",
+                    "description": "Le numéro du compte."
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Le libellé du compte."
+                },
+                "system": {
+                    "type": "string",
+                    "enum": [
+                        "minimal",
+                        "facultatif"
+                    ],
+                    "description": "Le système dans lequel s'inscrit le compte: minimal (plan de comptes minimal), facultatif (compte facultatif)."
+                },
+                "parent": {
+                    "type": [
+                        "integer",
+                        "null"
+                    ],
+                    "description": "Le numéro du compte parent, ou null pour les comptes racines (classes)."
+                }
+            },
+            "required": [
+                "number",
+                "label",
+                "system",
+                "parent"
+            ],
+            "additionalProperties": false
+        },
+        "nestedAccount": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "integer",
+                    "description": "Le numéro du compte."
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Le libellé du compte."
+                },
+                "system": {
+                    "type": "string",
+                    "enum": [
+                        "minimal",
+                        "facultatif"
+                    ],
+                    "description": "Le système dans lequel s'inscrit le compte: minimal (plan de comptes minimal), facultatif (compte facultatif)."
+                },
+                "accounts": {
+                    "type": "array",
+                    "description": "La liste des sous-comptes (structure récursive).",
+                    "items": {
+                        "$ref": "#/$defs/nestedAccount"
+                    }
+                }
+            },
+            "required": [
+                "number",
+                "label",
+                "system",
+                "accounts"
+            ],
+            "additionalProperties": false
+        },
+        "changeValue": {
+            "type": "object",
+            "properties": {
+                "from": {
+                    "type": "string"
+                },
+                "to": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "from",
+                "to"
+            ],
+            "additionalProperties": false
+        },
+        "diffAccount": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "integer",
+                    "description": "Le numéro du compte."
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Le libellé du compte."
+                },
+                "system": {
+                    "type": "string",
+                    "description": "Le système du compte."
+                }
+            },
+            "required": [
+                "number",
+                "label",
+                "system"
+            ],
+            "additionalProperties": false
+        },
+        "diffModified": {
+            "type": "object",
+            "properties": {
+                "number": {
+                    "type": "integer",
+                    "description": "Le numéro du compte modifié."
+                },
+                "label": {
+                    "$ref": "#/$defs/changeValue",
+                    "description": "Changement du libellé (from/to)."
+                },
+                "system": {
+                    "$ref": "#/$defs/changeValue",
+                    "description": "Changement du système (from/to)."
+                }
+            },
+            "required": [
+                "number"
+            ],
+            "additionalProperties": false
+        }
+    }
+}
