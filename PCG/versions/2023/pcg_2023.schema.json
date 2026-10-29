@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/arrhes/PCG/PCG/versions/2023/pcg_2023.schema.json",
+    "$id": "https://github.com/comptasse/PC/PCG/versions/2023/pcg_2023.schema.json",
     "title": "Plan Comptable Général - Version 2023",
     "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2023, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
     "type": "object",

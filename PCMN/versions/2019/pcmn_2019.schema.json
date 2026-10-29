@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/arrhes/PCG/PCMN/versions/2019/pcmn_2019.schema.json",
+    "$id": "https://github.com/comptasse/PC/PCMN/versions/2019/pcmn_2019.schema.json",
     "title": "Plan Comptable Minimum Normalisé (PCMN) - Version 2019",
     "description": "Plan comptable minimum normalisé belge (texte coordonné au 7 mai 2019), pour les entreprises ou pour les associations et fondations, contenant les formats hiérarchique et à plat, les notes de bas de page et le contenu de certains comptes, en français, néerlandais, allemand et anglais.",
     "type": "object",

@@ -1,6 +1,6 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/arrhes/PCG/PCG/versions/2024/pcg_2024.schema.json",
+    "$id": "https://github.com/comptasse/PC/PCG/versions/2024/pcg_2024.schema.json",
     "title": "Plan Comptable Général - Version 2024",
     "description": "Fichier fusionné du Plan Comptable Général français pour l'année 2024, contenant les formats hiérarchique, à plat, et les différences par rapport à la version précédente.",
     "type": "object",

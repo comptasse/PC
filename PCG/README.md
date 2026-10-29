@@ -14,6 +14,8 @@ Les données sont récupérées depuis le Plan Comptable Général (PCG) frança
 | 2024    | [.pdf](sources/2024/pcg_20240101.pdf) · [.html](sources/2024/pcg_20240101.html) · [.md](sources/2024/pcg_20240101.md) | [.pdf](sources/2024/recueil_20240101.pdf) · [.html](sources/2024/recueil_20240101.html) · [.md](sources/2024/recueil_20240101.md) | [README](versions/2024/README.md) |
 | 2023    | [.pdf](sources/2023/pcg_20230101.pdf) · [.html](sources/2023/pcg_20230101.html) · [.md](sources/2023/pcg_20230101.md) | [.pdf](sources/2023/recueil_20230101.pdf) · [.html](sources/2023/recueil_20230101.html) · [.md](sources/2023/recueil_20230101.md) | [README](versions/2023/README.md) |
 
+Les données sont également disponibles sur [data.gouv.fr](https://www.data.gouv.fr/datasets/plan-comptable-general).
+
 Les documents en format `.pdf` proviennent de cette [source](https://www.anc.gouv.fr/normes-comptables-francaises/recueils-des-normes-comptables). Certains liens ne fonctionnent cependant plus. 
 Nous avons contactés l'ANC à ce sujet, sans réponse pour le moment.
 
